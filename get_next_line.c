@@ -6,7 +6,7 @@
 /*   By: luchitel <luchitel@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 20:14:33 by luchitel          #+#    #+#             */
-/*   Updated: 2023/06/02 12:36:54 by luchitel         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:11:11 by luchitel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char *update_stash(char* stash, t_read_status *string_data)
 	if (string_data->new_line_pointer && (ft_strlen(string_data->new_line_pointer) - 1 > 0))
 	{
 		string_data->new_line_pointer++;
-		ft_strjoin(new_stash, string_data->new_line_pointer);
+		new_stash = ft_strjoin(new_stash, string_data->new_line_pointer);
 	}
 	free(stash);
 	return(new_stash);
@@ -85,17 +85,11 @@ char *get_next_line(int fd)
 
 // int main()
 // {
-// 	// int fd;
-// 	// char *line;
-// 	// int i;
+// 	int fd;
 
-// 	// fd = open("tests/41_no_nl", O_RDONLY);
-// 	// i = 0;
-// 	// while (i++ < 7)
-// 	// {
-// 	// 	line = get_next_line(fd);
-// 	// 	printf("%s", line);
-// 	// }
-// 	printf("%s", get_next_line(1000));
+// 	fd = open("gnlTester/files/41_with_nl", O_RDONLY);
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
 // 	return (0);
 // }

@@ -6,7 +6,7 @@
 /*   By: luchitel <luchitel@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 20:36:43 by luchitel          #+#    #+#             */
-/*   Updated: 2023/06/02 11:56:10 by luchitel         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:08:51 by luchitel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strdup(const char *src)
-{
-	char	*duplicate;
-	int		len;
-
-	len = ft_strlen(src);
-	duplicate = (char *)malloc(sizeof(char) * (len + 1));
-	if (!duplicate)
-		return (0);
-	ft_strlcpy(duplicate, src, len + 1);
-	return (duplicate);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -79,15 +66,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (join);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
+size_t ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
-	size_t	len;
-
-	len = ft_strlen(src);
-	if (len > dstsize && (int) dstsize > 0)
-		len = dstsize - 1;
+	size_t len = 0;
+	
+	while (src[len] && len < dstsize - 1)
+	{
+		dest[len] = src[len];
+		len++;
+	}
 	dest[len] = '\0';
-	while (len-- > 0)
-		*dest++ = *src++;
-	return (len);
+	
+	return len;
 }
