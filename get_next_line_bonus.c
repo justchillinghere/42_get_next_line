@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luchitel <luchitel@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 20:14:33 by luchitel          #+#    #+#             */
-/*   Updated: 2023/06/02 15:31:02 by luchitel         ###   ########.fr       */
+/*   Created: 2023/06/02 15:30:49 by luchitel          #+#    #+#             */
+/*   Updated: 2023/06/02 15:40:07 by luchitel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char *read_till_nl_found(int fd, char *stash, t_read_status *string_data)
 {
@@ -63,33 +63,22 @@ char *update_stash(char* stash, t_read_status *string_data)
 
 char *get_next_line(int fd)
 {
-	static char* stash;
+	static char* stash[4096];
 	char *line;
 	t_read_status *string_data;
 	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	string_data = (t_read_status *) malloc(sizeof(t_read_status));
-	stash = read_till_nl_found(fd, stash, string_data);
-	if (!stash)
+	stash[fd] = read_till_nl_found(fd, stash[fd], string_data);
+	if (!stash[fd])
 	{
 		free(string_data);
-		free(stash);
+		free(stash[fd]);
 		return (NULL);
 	}
-	line = get_line(stash);
-	stash = update_stash(stash, string_data);
+	line = get_line(stash[fd]);
+	stash[fd] = update_stash(stash[fd], string_data);
 	free(string_data);
 	return (line);
 }
-
-// int main()
-// {
-// 	int fd;
-
-// 	fd = open("gnlTester/files/41_with_nl", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	return (0);
-// }
