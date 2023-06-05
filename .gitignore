@@ -2,3 +2,6 @@
 *.o
 gnlTester
 tests
+*.pdf
+*.drawio
+*.out

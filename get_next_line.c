@@ -6,7 +6,7 @@
 /*   By: luchitel <luchitel@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 20:14:33 by luchitel          #+#    #+#             */
-/*   Updated: 2023/06/02 15:31:02 by luchitel         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:12:53 by luchitel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ char *get_next_line(int fd)
 	return (line);
 }
 
-// int main()
-// {
-// 	int fd;
+int main()
+{
+	int fd;
 
-// 	fd = open("gnlTester/files/41_with_nl", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	return (0);
-// }
+	fd = open("tests/test1.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	return (0);
+}
